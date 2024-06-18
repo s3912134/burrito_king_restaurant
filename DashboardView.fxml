@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="209.0" prefWidth="250.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controller.DashboardController">
+    <children>
+        <VBox alignment="CENTER" layoutX="13.0" layoutY="13.0" prefHeight="213.0" prefWidth="264.0" spacing="20.0">
+           <children>
+               <Label text="Welcome to your Dashboard" />
+               <Button onAction="#handlePlaceOrder" text="Place Order" />
+               <Button text="View Orders" />
+           </children>
+        </VBox>
+    </children>
+</AnchorPane>

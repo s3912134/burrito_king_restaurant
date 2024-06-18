@@ -1,24 +1,33 @@
 package model;
 
+import java.util.Objects;
+
 public class FoodItem {
     private String name;
-    private int quantity;
     private double price;
+    private int quantity;
 
-    // Constructor
-    public FoodItem(String name, int quantity, double price) {
+    public FoodItem(String name, double price, int quantity) {
         this.name = name;
-        this.quantity = quantity;
         this.price = price;
+        this.quantity = quantity;
     }
 
-    // Getters and setters
+    // Getters and Setters
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public int getQuantity() {
@@ -29,11 +38,18 @@ public class FoodItem {
         this.quantity = quantity;
     }
 
-    public double getPrice() {
-        return price;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FoodItem foodItem = (FoodItem) o;
+        return Double.compare(foodItem.price, price) == 0 &&
+                quantity == foodItem.quantity &&
+                Objects.equals(name, foodItem.name);
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, price, quantity);
     }
 }

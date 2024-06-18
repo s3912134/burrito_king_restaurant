@@ -13,20 +13,28 @@ public class User {
     private List<Order> orders;
     private ShoppingBasket basket;
 
-    // Constructor
-    public User(String username, String password, String firstName, String lastName) {
+    public User(String username, String password, String firstName, String lastName, boolean isVIP, String email) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.isVIP = false;
+        this.isVIP = isVIP;
+        this.email = email;
         this.orders = new ArrayList<>();
         this.basket = new ShoppingBasket();
     }
 
-    // Getters and setters
+    public User(String username2, String password2, String firstName2, String lastName2, String email2) {
+		
+	}
+
+	// Getters and Setters
     public String getUsername() {
         return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -73,46 +81,22 @@ public class User {
         return orders;
     }
 
-    public void addOrder(Order order) {
-        orders.add(order);
-    }
-
-    public Order getOrder(int orderNumber) {
-        for (Order order : orders) {
-            if (order.getOrderNumber() == orderNumber) {
-                return order;
-            }
-        }
-        return null;
-    }
-
-    public void updateOrder(Order updatedOrder) {
-        for (int i = 0; i < orders.size(); i++) {
-            if (orders.get(i).getOrderNumber() == updatedOrder.getOrderNumber()) {
-                orders.set(i, updatedOrder);
-                return;
-            }
-        }
-    }
-
     public ShoppingBasket getBasket() {
         return basket;
     }
 
-    public void setBasket(ShoppingBasket basket) {
-        this.basket = basket;
+    public void addOrder(Order order) {
+        this.orders.add(order);
     }
 
     public void editProfile(String firstName, String lastName, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        if (password != null && !password.isEmpty()) {
-            this.password = password;
-        }
+        setFirstName(firstName);
+        setLastName(lastName);
+        setPassword(password);
     }
 
     public void upgradeToVIP(String email) {
-        this.isVIP = true;
-        this.email = email;
+        setVIP(true);
+        setEmail(email);
     }
 }

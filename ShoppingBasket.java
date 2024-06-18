@@ -10,39 +10,29 @@ public class ShoppingBasket {
         this.items = new ArrayList<>();
     }
 
-    public void addItem(FoodItem item) {
-        items.add(item);
-    }
-
-    public void removeItem(FoodItem item) {
-        items.remove(item);
-    }
-
-    public void updateItemQuantity(FoodItem item, int quantity) {
-        for (FoodItem fi : items) {
-            if (fi.equals(item)) {
-                fi.setQuantity(quantity);
-            }
-        }
-    }
-
+    // Getters and Setters
     public List<FoodItem> getItems() {
         return items;
     }
 
-    public double getTotalPrice() {
-        return items.stream().mapToDouble(item -> item.getPrice() * item.getQuantity()).sum();
+    public void setItems(List<FoodItem> items) {
+        this.items = items;
     }
 
-    public void clearBasket() {
-        items.clear();
+    public void addItem(FoodItem item) {
+        this.items.add(item);
     }
 
-    @Override
-    public String toString() {
-        return "ShoppingBasket{" +
-                "items=" + items +
-                '}';
+    public void removeItem(FoodItem item) {
+        this.items.remove(item);
+    }
+
+    public void updateItemQuantity(FoodItem item, int quantity) {
+        for (FoodItem foodItem : items) {
+            if (foodItem.equals(item)) {
+                foodItem.setQuantity(quantity);
+                break;
+            }
+        }
     }
 }
-

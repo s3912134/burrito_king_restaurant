@@ -1,90 +1,78 @@
 package model;
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class Order {
-    private static int orderCounter = 0;
     private int orderNumber;
     private List<FoodItem> foodItems;
     private double totalPrice;
-    private String status; // placed, collected, cancelled
+    private String status;
     private String placedTime;
     private String collectedTime;
 
-    public Order(String placedTime) {
-        this.orderNumber = ++orderCounter;
-        this.foodItems = new ArrayList<>();
-        this.totalPrice = 0.0;
-        this.status = "placed";
+    public Order(int orderNumber, List<FoodItem> foodItems, String placedTime, String status) {
+        this.orderNumber = orderNumber;
+        this.foodItems = foodItems;
         this.placedTime = placedTime;
-        this.collectedTime = null;
+        this.status = status;
+        this.totalPrice = calculateTotalPrice();
     }
 
-    public void addFoodItem(FoodItem item) {
-        foodItems.add(item);
-        totalPrice += item.getPrice() * item.getQuantity();
-    }
-
-    public void calculateTotalPrice() {
-        totalPrice = foodItems.stream().mapToDouble(item -> item.getPrice() * item.getQuantity()).sum();
-    }
-
+    // Getters and Setters
     public int getOrderNumber() {
         return orderNumber;
+    }
+
+    public void setOrderNumber(int orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
+    public List<FoodItem> getFoodItems() {
+        return foodItems;
+    }
+
+    public void setFoodItems(List<FoodItem> foodItems) {
+        this.foodItems = foodItems;
     }
 
     public double getTotalPrice() {
         return totalPrice;
     }
-    
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 
     public String getStatus() {
         return status;
-    }
-
-    public String getPlacedTime() {
-        return placedTime;
-    }
-
-    public String getCollectedTime() {
-        return collectedTime;
-    }
-    
-    public void setOrderNumber(int orderNumber2) {
-    	return;
-    }
-    
-    public List<FoodItem> getFoodItems() {
-        return foodItems;
     }
 
     public void setStatus(String status) {
         this.status = status;
     }
 
+    public String getPlacedTime() {
+        return placedTime;
+    }
+
+    public void setPlacedTime(String placedTime) {
+        this.placedTime = placedTime;
+    }
+
+    public String getCollectedTime() {
+        return collectedTime;
+    }
+
     public void setCollectedTime(String collectedTime) {
         this.collectedTime = collectedTime;
     }
 
-    public boolean canBeCollected(String collectTime) {
-        // Implement logic to check if the order can be collected based on the preparation time
-        return true; // Placeholder
+    public void addFoodItem(FoodItem item) {
+        this.foodItems.add(item);
+        this.totalPrice = calculateTotalPrice();
     }
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "orderNumber=" + orderNumber +
-                ", foodItems=" + foodItems +
-                ", totalPrice=" + totalPrice +
-                ", status='" + status + '\'' +
-                ", placedTime='" + placedTime + '\'' +
-                ", collectedTime='" + collectedTime + '\'' +
-                '}';
+    public double calculateTotalPrice() {
+        return foodItems.stream().mapToDouble(item -> item.getPrice() * item.getQuantity()).sum();
     }
-
-
-
-	
-	}
-
+}

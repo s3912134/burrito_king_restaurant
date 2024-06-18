@@ -1,21 +1,27 @@
 package view;
 
-import model.FoodItem;
-
-import java.util.List;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class OrderView {
-    public void renderOrderForm() {
-        
-        System.out.println("Rendering order form...");
-    }
 
-    public void displayOrderDetails(List<FoodItem> items, double totalPrice) {
-       
-        System.out.println("Order Details:");
-        for (FoodItem item : items) {
-            System.out.println(item.getName() + ": $" + item.getPrice());
-        }
-        System.out.println("Total Price: $" + totalPrice);
+    public void render(Stage primaryStage) {
+        primaryStage.setTitle("Place Order");
+
+        VBox vbox = new VBox();
+
+        Label orderLabel = new Label("Order Details");
+        vbox.getChildren().add(orderLabel);
+
+
+        Button submitButton = new Button("Submit Order");
+        vbox.getChildren().add(submitButton);
+
+        Scene scene = new Scene(vbox, 400, 300);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }
